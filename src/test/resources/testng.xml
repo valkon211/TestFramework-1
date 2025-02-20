@@ -1,0 +1,7 @@
+<suite name="Regression Suite">
+    <test name="UI Tests">
+        <classes>
+            <class name="tests.SearchTests"/>
+        </classes>
+    </test>
+</suite>
