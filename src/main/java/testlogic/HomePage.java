@@ -1,23 +1,27 @@
 package testlogic;
 
-import core.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-    private WebDriver driver;
 
-    public HomePage() {
-        this.driver = DriverManager.getDriver();
-        PageFactory.initElements(driver, this);
+    @FindBy(name = "qs")
+    private WebElement searchInput;
+
+    @FindBy(css = ".search-bar.button")
+    private WebElement searchButton;
+
+    public HomePage(WebDriver driver) {
+        PageFactory.initElements(driver, this); // Инициализируем элементы
     }
 
-    @FindBy(xpath = "//a[text()='Вышитые картины']")
-    private WebElement embroideredPaintingsCategory;
+    public void inputSearchQuery(String query) {
+        searchInput.sendKeys(query);
+    }
 
-    public void navigateToCategory() {
-        embroideredPaintingsCategory.click();
+    public void clickSearchBth() {
+        searchButton.click();
     }
 }

@@ -1,6 +1,5 @@
 package core;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,17 +7,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
+    public static void setDriver(String browser) {
         if (driver.get() == null) {
-            String browser = System.getProperty("browser", "chrome");
-            if ("firefox".equalsIgnoreCase(browser)) {
-                WebDriverManager.firefoxdriver().setup();
-                driver.set(new FirefoxDriver());
-            } else {
-                WebDriverManager.chromedriver().setup();
-                driver.set(new ChromeDriver());
+            switch (browser.toLowerCase()) {
+                case "firefox":
+                    driver.set(new FirefoxDriver());
+                    break;
+                case "chrome":
+                default:
+                    driver.set(new ChromeDriver());
+                    break;
             }
         }
+    }
+
+    public static WebDriver getDriver() {
         return driver.get();
     }
 
