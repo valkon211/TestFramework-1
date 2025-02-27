@@ -20,7 +20,7 @@ public abstract class BasePage {
         if (!elements.isEmpty()) {
             for (WebElement element: elements) {
                 String elementTitle = getElementTitle(element, titleLocator);
-                if (Objects.equals(elementTitle, title.toLowerCase())) {
+                if (elementTitle.contains(title.toLowerCase())) {
                     return element;
                 }
             }

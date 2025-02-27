@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,9 +14,6 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "button.control.scLarge")
     private WebElement searchButton;
-
-    @FindBy(className = "fa-bars")
-    private WebElement menuControl;
 
     @FindBy(css = "li.menu-group.gids")
     private WebElement menuGroupGids;
@@ -35,11 +33,12 @@ public class HomePage extends BasePage {
         searchButton.click();
     }
 
-    public void clickMenuControl() {
-        menuControl.click();
-    }
-
     public void clickMenuGroupGids() {
         menuGroupGids.click();
+    }
+
+    public void clickMenuItemByTitle(String title) {
+        WebElement item = findElementByTitle(menuExtraItems, title, By.cssSelector("a"));
+        item.click();
     }
 }

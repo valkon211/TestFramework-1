@@ -3,6 +3,7 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.SearchTests"/>
+            <class name="tests.EmbroideredPaintingsTests"/>
         </classes>
     </test>
 
@@ -10,6 +11,7 @@
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.SearchTests"/>
+            <class name="tests.EmbroideredPaintingsTests"/>
         </classes>
     </test>
 </suite>

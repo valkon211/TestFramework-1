@@ -18,13 +18,14 @@ public class SearchTests extends BaseTest {
     }
 
     @Test
-    public void testSearchForGiraffe() {
+    public void testCheckSearchResult() {
         String searchQuery = "Жираф";
         homePage.inputSearchQuery(searchQuery);
         homePage.clickSearchBth();
 
         String firstPostTitle = searchResultPage.getSearchResultElementTitle(0);
 
-        Assert.assertTrue(firstPostTitle.contains("жираф"), "Первая картина не содержит слово 'Жираф'!");
+        Assert.assertTrue(firstPostTitle.contains(
+                searchQuery.toLowerCase()), String.format("Первая картина не содержит слово '%s'!", searchQuery));
     }
 }
