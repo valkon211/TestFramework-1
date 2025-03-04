@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-import java.util.Objects;
 
 public abstract class BasePage {
     protected WebDriver driver;
@@ -30,6 +29,9 @@ public abstract class BasePage {
     }
 
     protected String getElementTitle(WebElement element, By titleLocator) {
+        if (titleLocator == null)
+            return element.getText().toLowerCase();
+
         WebElement titleElement = element.findElement(titleLocator);
         return titleElement.getText().toLowerCase();
     }

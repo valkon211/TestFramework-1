@@ -3,33 +3,36 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.EmbroideredPaintingsPage;
+import pages.CategoryPage;
 import pages.HomePage;
 
-public class EmbroideredPaintingsTests extends BaseTest {
+public class CategoryTests extends BaseTest {
     private HomePage homePage;
-    private EmbroideredPaintingsPage epPage;
+    private CategoryPage categoryPage;
 
     @BeforeMethod
     public void setUpPages() {
         homePage = new HomePage(driver);
-        epPage = new EmbroideredPaintingsPage(driver);
+        categoryPage = new CategoryPage(driver);
     }
 
     @Test
     public void testCheckCategoryPostExists() {
-        String itemTitle = "Вышитые картины";
-        String title = "Трамвайный путь";
-        boolean postExists = false;
+        var itemTitle = "Вышитые картины";
+        var title = "Трамвайный путь";
+        var postExists = false;
 
         homePage.clickMenuGroupGids();
         homePage.clickMenuItemByTitle(itemTitle);
 
-        do {
-            postExists = epPage.checkPostWithTitleExists(title);
-            epPage.clickNextPageBtn();
+        while(true){
+            postExists = categoryPage.isPostWithTitleExists(title);
+
+            if (postExists || !categoryPage.isNextBthShow())
+                break;
+
+            categoryPage.clickNextPageBtn();
         }
-        while(!postExists && epPage.nextBthShow());
 
         Assert.assertTrue(postExists, String.format("Выборка не содержит картину с названием '%s'!", title));
     }

@@ -19,11 +19,12 @@ public class SearchTests extends BaseTest {
 
     @Test
     public void testCheckSearchResult() {
-        String searchQuery = "Жираф";
+        var searchQuery = "Жираф";
+
         homePage.inputSearchQuery(searchQuery);
         homePage.clickSearchBth();
 
-        String firstPostTitle = searchResultPage.getSearchResultElementTitle(0);
+        var firstPostTitle = searchResultPage.getSearchResultElementTitle(0);
 
         Assert.assertTrue(firstPostTitle.contains(
                 searchQuery.toLowerCase()), String.format("Первая картина не содержит слово '%s'!", searchQuery));
