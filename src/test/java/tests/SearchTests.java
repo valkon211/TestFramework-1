@@ -24,7 +24,7 @@ public class SearchTests extends BaseTest {
         homePage.inputSearchQuery(searchQuery);
         homePage.clickSearchBth();
 
-        var firstPostTitle = searchResultPage.getSearchResultElementTitle(0);
+        var firstPostTitle = searchResultPage.getPostTitleByIndex(0);
 
         Assert.assertTrue(firstPostTitle.contains(
                 searchQuery.toLowerCase()), String.format("Первая картина не содержит слово '%s'!", searchQuery));

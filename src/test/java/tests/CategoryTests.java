@@ -18,12 +18,12 @@ public class CategoryTests extends BaseTest {
 
     @Test
     public void testCheckCategoryPostExists() {
-        var itemTitle = "Вышитые картины";
+        var categoryTitle = "Вышитые картины";
         var title = "Трамвайный путь";
         var postExists = false;
 
         homePage.clickMenuGroupGids();
-        homePage.clickMenuItemByTitle(itemTitle);
+        homePage.clickMenuItemByTitle(categoryTitle);
 
         while(true){
             postExists = categoryPage.isPostWithTitleExists(title);

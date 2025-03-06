@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class PicturePage extends BasePage {
 
-    @FindBy(linkText = "Стиль: ")
+    @FindBy(xpath = "//*[@id=\"main_container\"]/div[3]/div[2]/div[5]/a")
     private WebElement styleElement;
 
     public PicturePage(WebDriver driver){
@@ -15,11 +15,10 @@ public class PicturePage extends BasePage {
     }
 
     public String getStyleName(){
-        return "";
-//        return styleElement
-//                .findElement(By.xpath(".."))
-//                .getText()
-//                .toLowerCase()
-//                .replace("Стиль: ", "");
+        return styleElement
+                .findElement(By.xpath(".."))
+                .getText()
+                .toLowerCase()
+                .replace("стиль: ", "");
     }
 }
