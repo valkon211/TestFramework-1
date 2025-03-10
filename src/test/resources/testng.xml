@@ -5,6 +5,8 @@
             <class name="tests.SearchTests"/>
             <class name="tests.CategoryTests"/>
             <class name="tests.PicturePageTests"/>
+            <class name="tests.FavoritesTests"/>
+            <class name="tests.ShoppingCartTests"/>
         </classes>
     </test>
 
@@ -13,6 +15,9 @@
         <classes>
             <class name="tests.SearchTests"/>
             <class name="tests.CategoryTests"/>
+            <class name="tests.PicturePageTests"/>
+            <class name="tests.FavoritesTests"/>
+            <class name="tests.ShoppingCartTests"/>
         </classes>
     </test>
 </suite>

@@ -14,6 +14,9 @@ public abstract class BasePage {
     @FindBy(xpath = "/html/body/div[1]/span[6]/img")
     protected WebElement favoriteButton;
 
+    @FindBy(className = "basketico")
+    protected WebElement shoppingCartButton;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -21,6 +24,10 @@ public abstract class BasePage {
 
     public void clickFavoriteBtn() {
         favoriteButton.click();
+    }
+
+    public void goToShoppingCart() {
+        shoppingCartButton.click();
     }
 
     protected WebElement findElementByTitle(List<WebElement> elements, String title, By titleLocator) {

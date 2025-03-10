@@ -14,6 +14,9 @@ public abstract class PostsPage extends BasePage {
     @FindBy(linkText = "»")
     protected WebElement nextPageButton;
 
+    @FindBy(className = "ok-button")
+    protected WebElement goToShoppingCart;
+
     public PostsPage(WebDriver driver) {
         super(driver);
     }
@@ -50,6 +53,19 @@ public abstract class PostsPage extends BasePage {
 
         var heart = post.findElement(By.className("heart"));
         heart.click();
+    }
+
+    public void addToShoppingCart(int index) {
+        var post = getPostByIndex(index);
+
+        if (post != null) {
+            var shoppingCartBtn = post.findElement(By.className("oclick"));
+            shoppingCartBtn.click();
+        }
+    }
+
+    public void goToShoppingCartInModal() {
+        goToShoppingCart.click();
     }
 
     protected WebElement getPostByIndex(int index) {
