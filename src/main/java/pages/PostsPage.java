@@ -45,6 +45,16 @@ public abstract class PostsPage extends BasePage {
         return titleWithAuthor.substring(titleWithAuthor.indexOf("\n") + 1);
     }
 
+    public float getPostPriceByIndex(int index) {
+        var post = getPostByIndex(index);
+
+        if (post == null)
+            return 0;
+
+        var priceText = post.findElement(By.className("price")).getText().replaceAll("\\s+","");
+        return Float.parseFloat(priceText.substring(0, priceText.indexOf("р")));
+    }
+
     public void addPostToFavorite(int index) {
         var post = getPostByIndex(index);
 

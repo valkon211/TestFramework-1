@@ -1,10 +1,14 @@
 package tests;
 
+import data.TestDataProvider;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.HomePage;
 import pages.ShoppingCartPage;
+
+import java.util.Map;
 
 public class ShoppingCartTests extends BaseTest {
     private HomePage homePage;
@@ -18,16 +22,24 @@ public class ShoppingCartTests extends BaseTest {
         shoppingCartPage = new ShoppingCartPage(driver);
     }
 
-    @Test
-    public void testAddToShoppingCart() {
-        var categoryTitle = "Ювелирное искусство";
+    @Test(dataProvider = "ShoppingCartTestsData", dataProviderClass = TestDataProvider.class)
+    public void testAddToShoppingCart(Map<String, Object> testData) {
+        var categoryTitle = (String) testData.get("categoryName");
+        var postIndex = (Integer) testData.get("postIndex");
 
         homePage.clickMenuGroupGids();
         homePage.clickMenuItemByTitle(categoryTitle);
-        categoryPage.addToShoppingCart(0);
+        categoryPage.addToShoppingCart(postIndex);
+
+        var postTitle = categoryPage.getPostTitleByIndex(postIndex);
+        var postPrice = categoryPage.getPostPriceByIndex(postIndex);
+
         categoryPage.goToShoppingCartInModal();
         categoryPage.goToShoppingCart();
 
+        var productExists = shoppingCartPage.isProductExists(postTitle, postPrice);
+
+        Assert.assertTrue(productExists, String.format("В корзине нет картины с названием '%s'!", postTitle));
     }
 
 }

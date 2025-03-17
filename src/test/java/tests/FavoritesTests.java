@@ -1,12 +1,14 @@
 package tests;
 
-import org.openqa.selenium.support.ui.Wait;
+import data.TestDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.FavoritesPage;
 import pages.HomePage;
+
+import java.util.Map;
 
 public class FavoritesTests extends BaseTest {
     private HomePage homePage;
@@ -20,9 +22,9 @@ public class FavoritesTests extends BaseTest {
         favoritesPage = new FavoritesPage(driver);
     }
 
-    @Test
-    public void testAddToFavorite() {
-        var categoryTitle = "Батик";
+    @Test(dataProvider = "FavoritesTestsData", dataProviderClass = TestDataProvider.class)
+    public void testAddToFavorite(Map<String, Object> testData) {
+        var categoryTitle = (String) testData.get("categoryName");
 
         homePage.clickMenuGroupGids();
         homePage.clickMenuItemByTitle(categoryTitle);

@@ -1,5 +1,6 @@
 package tests;
 
+import data.TestDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ import pages.HomePage;
 import pages.PicturePage;
 
 import java.util.List;
+import java.util.Map;
 
 public class PicturePageTests extends BaseTest{
     private HomePage homePage;
@@ -21,17 +23,17 @@ public class PicturePageTests extends BaseTest{
         picturePage = new PicturePage(driver);
     }
 
-    @Test
-    public void testCheckPictureStyleTest() {
-        String itemTitle = "Вышитые картины";
-        var genre = "Городской пейзаж";
-        var title = "Трамвайный путь";
-        var style = "Реализм";
+    @Test(dataProvider = "PicturePageTestsData", dataProviderClass = TestDataProvider.class)
+    public void testCheckPictureStyleTest(Map<String, Object> testData) {
+        var categoryName = (String) testData.get("categoryName");
+        var genre = (String) testData.get("postGenre");
+        var title = (String) testData.get("postTitle");
+        var style =(String) testData.get("postStyle");
 
         var postExists = false;
 
         homePage.clickMenuGroupGids();
-        homePage.clickMenuItemByTitle(itemTitle);
+        homePage.clickMenuItemByTitle(categoryName);
 
         categoryPage.useGenres(List.of(genre.toLowerCase()));
 
