@@ -11,7 +11,7 @@ import pages.PicturePage;
 import java.util.List;
 import java.util.Map;
 
-public class PicturePageTests extends BaseTest{
+public class PicturePageTest extends BaseTest{
     private HomePage homePage;
     private CategoryPage categoryPage;
     private PicturePage picturePage;

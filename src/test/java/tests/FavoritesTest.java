@@ -10,7 +10,7 @@ import pages.HomePage;
 
 import java.util.Map;
 
-public class FavoritesTests extends BaseTest {
+public class FavoritesTest extends BaseTest {
     private HomePage homePage;
     private CategoryPage categoryPage;
     private FavoritesPage favoritesPage;

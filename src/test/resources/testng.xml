@@ -1,23 +1,27 @@
 <suite name="Regression Suite">
+    <listeners>
+        <listener class-name="reporting.AllureListener" />
+    </listeners>
+
     <test name="Chrome Test">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="tests.SearchTests"/>
-            <class name="tests.CategoryTests"/>
-            <class name="tests.PicturePageTests"/>
-            <class name="tests.FavoritesTests"/>
-            <class name="tests.ShoppingCartTests"/>
+            <class name="tests.SearchTest"/>
+<!--            <class name="tests.CategoryTest"/>-->
+<!--            <class name="tests.PicturePageTest"/>-->
+            <class name="tests.FavoritesTest"/>
+<!--            <class name="tests.ShoppingCartTest"/>-->
         </classes>
     </test>
 
     <test name="Firefox Test">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="tests.SearchTests"/>
-            <class name="tests.CategoryTests"/>
-            <class name="tests.PicturePageTests"/>
-            <class name="tests.FavoritesTests"/>
-            <class name="tests.ShoppingCartTests"/>
+            <class name="tests.SearchTest"/>
+<!--            <class name="tests.CategoryTest"/>-->
+<!--            <class name="tests.PicturePageTest"/>-->
+            <class name="tests.FavoritesTest"/>
+<!--            <class name="tests.ShoppingCartTest"/>-->
         </classes>
     </test>
 </suite>

@@ -8,16 +8,15 @@ public class DriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static void setDriver(String browser) {
-        if (driver.get() == null) {
-            switch (browser.toLowerCase()) {
-                case "firefox":
-                    driver.set(new FirefoxDriver());
-                    break;
-                case "chrome":
-                default:
-                    driver.set(new ChromeDriver());
-                    break;
-            }
+        quitDriver();
+        switch (browser.toLowerCase()) {
+            case "firefox":
+                driver.set(new FirefoxDriver());
+                break;
+            case "chrome":
+            default:
+                driver.set(new ChromeDriver());
+                break;
         }
     }
 

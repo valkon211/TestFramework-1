@@ -10,7 +10,7 @@ import pages.SearchResultPage;
 import java.util.Map;
 
 
-public class SearchTests extends BaseTest {
+public class SearchTest extends BaseTest {
     private HomePage homePage;
     private SearchResultPage searchResultPage;
 

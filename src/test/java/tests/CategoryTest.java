@@ -9,7 +9,7 @@ import pages.HomePage;
 
 import java.util.Map;
 
-public class CategoryTests extends BaseTest {
+public class CategoryTest extends BaseTest {
     private HomePage homePage;
     private CategoryPage categoryPage;
 

@@ -10,7 +10,7 @@ import pages.ShoppingCartPage;
 
 import java.util.Map;
 
-public class ShoppingCartTests extends BaseTest {
+public class ShoppingCartTest extends BaseTest {
     private HomePage homePage;
     private CategoryPage categoryPage;
     private ShoppingCartPage shoppingCartPage;
