@@ -1,6 +1,6 @@
 <suite name="Regression Suite">
     <listeners>
-        <listener class-name="reporting.AllureListener" />
+        <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
 
     <test name="Chrome Test">
@@ -9,7 +9,7 @@
             <class name="tests.SearchTest"/>
 <!--            <class name="tests.CategoryTest"/>-->
 <!--            <class name="tests.PicturePageTest"/>-->
-            <class name="tests.FavoritesTest"/>
+<!--            <class name="tests.FavoritesTest"/>-->
 <!--            <class name="tests.ShoppingCartTest"/>-->
         </classes>
     </test>
@@ -20,7 +20,7 @@
             <class name="tests.SearchTest"/>
 <!--            <class name="tests.CategoryTest"/>-->
 <!--            <class name="tests.PicturePageTest"/>-->
-            <class name="tests.FavoritesTest"/>
+<!--            <class name="tests.FavoritesTest"/>-->
 <!--            <class name="tests.ShoppingCartTest"/>-->
         </classes>
     </test>

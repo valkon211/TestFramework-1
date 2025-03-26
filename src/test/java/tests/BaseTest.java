@@ -1,7 +1,7 @@
 package tests;
 
 import core.DriverManager;
-import reporting.AllureListener;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-@Listeners(AllureListener.class)
+@Listeners(AllureTestNg.class)
 public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;

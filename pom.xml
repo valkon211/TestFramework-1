@@ -12,11 +12,16 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <allure.version>2.24.0</allure.version>
+        <allure.maven.version>2.15.0</allure.maven.version>
         <aspectj.version>1.9.20.1</aspectj.version>
+        <selenium.version>4.15.0</selenium.version>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
+        <testng.version>7.11.0</testng.version>
+        <jackson.version>2.16.0</jackson.version>
     </properties>
 
-    <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -34,22 +39,21 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.15.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- WebDriver Manager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.6.3</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
 
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.11.0</version>
-            <scope>compile</scope>
+            <version>${testng.version}</version>
         </dependency>
 
         <!-- Allure Report -->
@@ -57,25 +61,18 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-attachments</artifactId>
-            <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Jackson (для работы с JSON) -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.16.0</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
-            <version>2.24.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -85,25 +82,38 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!-- Allure Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.15.0</version>
+                <version>${allure.maven.version}</version>
+                <configuration>
+                    <reportVersion>2.30.0</reportVersion>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
