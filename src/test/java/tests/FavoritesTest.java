@@ -31,16 +31,42 @@ public class FavoritesTest extends BaseTest {
     @Description("Проверка наличия выбранной картины в разделе 'Избранное'")
     public void testAddToFavorite(Map<String, Object> testData) {
         var categoryTitle = (String) testData.get("categoryName");
+        var index = (Integer) testData.get("index");
 
-        homePage.clickMenuGroupGids();
-        homePage.clickMenuItemByTitle(categoryTitle);
-        categoryPage.addPostToFavorite(0);
+        clickMenuItemByTitle(categoryTitle);
+        addPostToFavorite(index);
 
-        var postTitle = categoryPage.getPostTitleByIndex(0);
+        var postTitle = getPostTitle(index);
 
-        categoryPage.clickFavoriteBtn();
-        var postExists = favoritesPage.isPostWithTitleExists(postTitle);
+        clickFavoriteButton();
+        var postExists = isPostWithTitleExists(postTitle);
 
         Assert.assertTrue(postExists, String.format("В 'Избраное' отсутсвует картина с названием '%s'!", postTitle));
+    }
+
+    @Step("Нажатие на элемент меню с названием: {categoryName}")
+    private void clickMenuItemByTitle(String categoryName) {
+        homePage.clickMenuGroupGids();
+        homePage.clickMenuItemByTitle(categoryName);
+    }
+
+    @Step("Добавление в 'Избранное' картины под номером: {index+1}")
+    private void addPostToFavorite(int index) {
+        categoryPage.addPostToFavorite(index);
+    }
+
+    @Step("Взятие название картины под номером: {index+1}")
+    private String getPostTitle(int index) {
+        return categoryPage.getPostTitleByIndex(index);
+    }
+
+    @Step("Переход в раздел 'Избранное'")
+    private void clickFavoriteButton() {
+        categoryPage.clickFavoriteBtn();
+    }
+
+    @Step("Проверка, что картина с названием {postTitle} есть в разделе 'Избранное'")
+    private boolean isPostWithTitleExists(String postTitle) {
+        return favoritesPage.isPostWithTitleExists(postTitle);
     }
 }

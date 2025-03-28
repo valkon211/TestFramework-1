@@ -38,26 +38,56 @@ public class PicturePageTest extends BaseTest{
 
         var postExists = false;
 
-        homePage.clickMenuGroupGids();
-        homePage.clickMenuItemByTitle(categoryName);
+        clickMenuItemByTitle(categoryName);
 
-        categoryPage.useGenres(List.of(genre.toLowerCase()));
+        useGenres(List.of(genre.toLowerCase()));
 
         while(true) {
-            postExists = categoryPage.isPostWithTitleExists(title);
+            postExists = isPostWithTitleExists(title);
 
             if (postExists || !categoryPage.isNextBthShow())
                 break;
 
-            categoryPage.clickNextPageBtn();
+            clickNextPageButton();
         }
 
         Assert.assertTrue(postExists, String.format("Выборка не содержит картину с названием '%s'!", title));
 
-        categoryPage.clickPostByTitle(title);
-        var styleName = picturePage.getStyleName();
+        clickPostByTitle(title);
+        var styleName = getPostStyleName();
 
         Assert.assertTrue(styleName.contains(
                 style.toLowerCase()), String.format("Картина не содержит стиль '%s'!", style));
+    }
+
+    @Step("Нажатие на элемент меню с названием: {categoryName}")
+    private void clickMenuItemByTitle(String categoryName) {
+        homePage.clickMenuGroupGids();
+        homePage.clickMenuItemByTitle(categoryName);
+    }
+
+    @Step("Выбор жанров")
+    private void useGenres(List<String> genres) {
+        categoryPage.useGenres(genres);
+    }
+
+    @Step("Проверка, что картина с названием {postTitle} есть в разделе 'Избранное'")
+    private boolean isPostWithTitleExists(String postTitle) {
+        return categoryPage.isPostWithTitleExists(postTitle);
+    }
+
+    @Step("Нажатие на кнопку 'Следующая страница'")
+    private void clickNextPageButton() {
+        categoryPage.clickNextPageBtn();
+    }
+
+    @Step("Нажатие на картину с названием: {postTitle}")
+    private void clickPostByTitle(String postTitle) {
+        categoryPage.clickPostByTitle(postTitle);
+    }
+
+    @Step("Получение значение стиля картины")
+    private String getPostStyleName() {
+        return picturePage.getStyleName();
     }
 }

@@ -32,7 +32,6 @@ public class CategoryTest extends BaseTest {
         var categoryName = (String) testData.get("categoryName");
         var postExists = false;
 
-        clickMenuGroupGids();
         clickMenuItemByTitle(categoryName);
 
         while (true) {
@@ -48,13 +47,9 @@ public class CategoryTest extends BaseTest {
         Assert.assertTrue(postExists, String.format("Выборка не содержит картину с названием '%s'!", postTitle));
     }
 
-    @Step("Нажатие на меню групп GIDS")
-    private void clickMenuGroupGids() {
-        homePage.clickMenuGroupGids();
-    }
-
     @Step("Нажатие на элемент меню с названием: {categoryName}")
     private void clickMenuItemByTitle(String categoryName) {
+        homePage.clickMenuGroupGids();
         homePage.clickMenuItemByTitle(categoryName);
     }
 

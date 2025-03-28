@@ -1,5 +1,6 @@
 {
   "testAddToFavorite": {
-    "categoryName": "Батик"
+    "categoryName": "Батик",
+    "index": 0
   }
 }
