@@ -2,6 +2,8 @@ package tests;
 
 import data.TestDataProvider;
 import io.qameta.allure.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -70,7 +72,6 @@ public class ShoppingCartTest extends BaseTest {
     @Step("Переход в 'Корзину' через модальное окно")
     private void goToShoppingCartInModal() {
         categoryPage.goToShoppingCartInModal();
-        categoryPage.goToShoppingCart();
     }
 
     @Step("Проверка наличия в 'Корзине' картины с названием: {title} и ценой: {price}")

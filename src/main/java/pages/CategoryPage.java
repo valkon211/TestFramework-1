@@ -18,10 +18,6 @@ public class CategoryPage extends PostsPage {
         super(driver);
     }
 
-    public boolean isNextBthShow() {
-        return nextPageButton != null;
-    }
-
     public void useGenres(List<String> genres) {
         for(String genre: genres) {
             var genreInputItem = findElementByTitle(genreBox.findElements(By.tagName("label")), genre, null)

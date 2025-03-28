@@ -34,6 +34,10 @@ public abstract class PostsPage extends BasePage {
         return getPostByTitle(title) != null;
     }
 
+    public boolean isNextBthShow() {
+        return nextPageButton != null;
+    }
+
     public String getPostTitleByIndex(int index) {
         var post = getPostByIndex(index);
 

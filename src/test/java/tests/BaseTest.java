@@ -14,7 +14,6 @@ public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-
     @BeforeMethod
     @Parameters("browser")
     public void setUp(@Optional("chrome")String browser, ITestContext context) {

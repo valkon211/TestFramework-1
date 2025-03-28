@@ -7,10 +7,10 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.SearchTest"/>
-<!--            <class name="tests.CategoryTest"/>-->
-<!--            <class name="tests.PicturePageTest"/>-->
-<!--            <class name="tests.FavoritesTest"/>-->
-<!--            <class name="tests.ShoppingCartTest"/>-->
+            <class name="tests.CategoryTest"/>
+            <class name="tests.PicturePageTest"/>
+            <class name="tests.FavoritesTest"/>
+            <class name="tests.ShoppingCartTest"/>
         </classes>
     </test>
 
@@ -18,10 +18,10 @@
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.SearchTest"/>
-<!--            <class name="tests.CategoryTest"/>-->
-<!--            <class name="tests.PicturePageTest"/>-->
-<!--            <class name="tests.FavoritesTest"/>-->
-<!--            <class name="tests.ShoppingCartTest"/>-->
+            <class name="tests.CategoryTest"/>
+            <class name="tests.PicturePageTest"/>
+            <class name="tests.FavoritesTest"/>
+            <class name="tests.ShoppingCartTest"/>
         </classes>
     </test>
 </suite>
