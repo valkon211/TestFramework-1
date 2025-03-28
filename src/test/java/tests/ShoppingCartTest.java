@@ -1,6 +1,7 @@
 package tests;
 
 import data.TestDataProvider;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,6 +11,8 @@ import pages.ShoppingCartPage;
 
 import java.util.Map;
 
+@Epic("Тестирование раздела 'Корзина'")
+@Feature("Проверка содержания раздела 'Корзина'")
 public class ShoppingCartTest extends BaseTest {
     private HomePage homePage;
     private CategoryPage categoryPage;
@@ -23,6 +26,9 @@ public class ShoppingCartTest extends BaseTest {
     }
 
     @Test(dataProvider = "ShoppingCartTestsData", dataProviderClass = TestDataProvider.class)
+    @Story("Проверка наличия товара в разделе 'Карзина'")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Проверка наличия выбранного товара в разделе 'Карзина'")
     public void testAddToShoppingCart(Map<String, Object> testData) {
         var categoryTitle = (String) testData.get("categoryName");
         var postIndex = (Integer) testData.get("postIndex");

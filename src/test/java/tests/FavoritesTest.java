@@ -1,6 +1,7 @@
 package tests;
 
 import data.TestDataProvider;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,6 +11,8 @@ import pages.HomePage;
 
 import java.util.Map;
 
+@Epic("Тестирование раздела 'Избранное'")
+@Feature("Проверка содержания раздела 'Избранное'")
 public class FavoritesTest extends BaseTest {
     private HomePage homePage;
     private CategoryPage categoryPage;
@@ -23,6 +26,9 @@ public class FavoritesTest extends BaseTest {
     }
 
     @Test(dataProvider = "FavoritesTestsData", dataProviderClass = TestDataProvider.class)
+    @Story("Проверка наличия картины в разделе 'Избранное'")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Проверка наличия выбранной картины в разделе 'Избранное'")
     public void testAddToFavorite(Map<String, Object> testData) {
         var categoryTitle = (String) testData.get("categoryName");
 

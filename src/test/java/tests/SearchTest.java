@@ -4,7 +4,6 @@ import data.TestDataProvider;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,7 +12,8 @@ import pages.SearchResultPage;
 
 import java.util.Map;
 
-
+@Epic("Тестирование поиска")
+@Feature("Проверка результатов поиска")
 public class SearchTest extends BaseTest {
     private HomePage homePage;
     private SearchResultPage searchResultPage;
@@ -24,12 +24,10 @@ public class SearchTest extends BaseTest {
         searchResultPage = new SearchResultPage(driver);
     }
 
-    @Epic("Main Epic")
-    @Feature("Feature 1")
-    @Story("Story 1")
-    @Severity(SeverityLevel.CRITICAL)  // Добавлена важность теста
     @Test(dataProvider = "SearchTestsData", dataProviderClass = TestDataProvider.class)
-    @Description("Проверка результатов поиска")
+    @Story("Проверка результата поиска")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Проверка результатов поиска на определённый запрос")
     public void testCheckSearchResult(Map<String, Object> testData) {
         var searchQuery = (String) testData.get("searchQuery");
         var postIndex = (Integer) testData.get("postIndex");

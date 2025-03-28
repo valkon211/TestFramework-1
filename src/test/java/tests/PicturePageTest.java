@@ -1,6 +1,7 @@
 package tests;
 
 import data.TestDataProvider;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,6 +12,8 @@ import pages.PicturePage;
 import java.util.List;
 import java.util.Map;
 
+@Epic("Тестирование страницы описания картины")
+@Feature("Проверка содержания страницы описания картины")
 public class PicturePageTest extends BaseTest{
     private HomePage homePage;
     private CategoryPage categoryPage;
@@ -24,6 +27,9 @@ public class PicturePageTest extends BaseTest{
     }
 
     @Test(dataProvider = "PicturePageTestsData", dataProviderClass = TestDataProvider.class)
+    @Story("Проверка характеристик картины")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Проверка наличия указанного стиля картины")
     public void testCheckPictureStyleTest(Map<String, Object> testData) {
         var categoryName = (String) testData.get("categoryName");
         var genre = (String) testData.get("postGenre");
