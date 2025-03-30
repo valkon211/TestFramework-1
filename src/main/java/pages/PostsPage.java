@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +28,7 @@ public abstract class PostsPage extends BasePage {
 
     public void clickPostByTitle(String title) {
         var postLink = getPostByTitle(title).findElement(By.tagName("a"));
-        postLink.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", postLink);
     }
 
     public boolean isPostWithTitleExists(String title) {
